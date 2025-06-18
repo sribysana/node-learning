@@ -14,10 +14,12 @@ const server = http.createServer((req,res)=>{
     // This will be used to determine the type of request made
     const method = req.method;
     const query =parsedUrl.query; // Extract query parameters from the URL
+    const headers = req.headers; // Extract headers from the request
     
+    console.log('headers:', headers);
     console.log('trimmedPathName:', trimmedPathName,'method:', method,'query:', query);  
     res.writeHead(200, { 'Content-Type': "application/json" });
-    res.end(JSON.stringify({ message: { trimmedPathName, method, query } })); // Respond with a JSON object
+    res.end(JSON.stringify({ message: { trimmedPathName, method, query, headers } })); // Respond with a JSON object
 });
 
 // The server listens on port 3000
