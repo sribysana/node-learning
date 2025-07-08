@@ -2,6 +2,7 @@ const http = require('http');// import  http module
 const url = require('url'); // import url module
 const {StringDecoder} = require('string_decoder'); // import string_decoder module (not used in this example)
 const routes = require('./routes'); // import routes from routes.js
+const environment = require('./config'); // import environment configuration
 
 // use http module to create a server
 // The server will respond with a JSON object when accessed
@@ -64,6 +65,6 @@ const server = http.createServer((req,res)=>{
 
 // Start the server and listen on port 3000
 // When the server is running, it will log a message to the console
-server.listen(3000, () => {
-  console.log('Server is running on http://localhost:3000');
+server.listen(environment.port, () => {
+  console.log(`Server is running on http://localhost:${environment.port}  in ${environment.name} mode`);
 });
